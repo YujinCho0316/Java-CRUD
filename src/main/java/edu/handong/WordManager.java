@@ -25,6 +25,8 @@ public class WordManager {
                 wordCRUD.updateItem();
             } else if (menu == 6) { // delete
                 wordCRUD.deleteItem();
+            } else if (menu == 7) { // save file
+                wordCRUD.saveFile();
             }
         }
     }
