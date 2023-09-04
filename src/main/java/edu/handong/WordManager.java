@@ -17,18 +17,20 @@ public class WordManager {
                 System.out.println("\n프로그램 종료! 다음에 만나요~");
                 break;
             }
-            if (menu == 4) { // create
-                wordCRUD.addItem();
-            } else if (menu == 1) { // list
+            if (menu == 1) { // list
                 wordCRUD.listAll();
+            } else if (menu == 2) { // search level
+                wordCRUD.searchLevel();
+            } else if (menu == 3) { // search word
+                wordCRUD.searchWord();
+            } else if (menu == 4) { // create
+                wordCRUD.addItem();
             } else if (menu == 5) { // update
                 wordCRUD.updateItem();
             } else if (menu == 6) { // delete
                 wordCRUD.deleteItem();
             } else if (menu == 7) { // save file
                 wordCRUD.saveFile();
-            } else if (menu == 2) { // search level
-                wordCRUD.searchLevel();
             }
         }
     }
