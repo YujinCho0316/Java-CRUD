@@ -44,7 +44,6 @@ public class WordCRUD implements  ICRUD{
 
     // 5번
     public ArrayList<Integer> listAll(String keyword) {
-
         ArrayList<Integer> idlist = new ArrayList<>();
         int j = 0;
         System.out.println("\n--------------------------------");
@@ -144,5 +143,24 @@ public class WordCRUD implements  ICRUD{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // 2번
+    public void listAll(int level) {
+        int j = 0;
+        System.out.println("\n--------------------------------");
+        for (Word word : list) {
+            int ilevel = word.getLevel();
+            if (ilevel != level) continue;
+            System.out.print(j + 1 + " ");
+            System.out.println(word);
+            j++;
+        }
+        System.out.println("--------------------------------\n");
+    }
+    public void searchLevel() {
+        System.out.print("=> 원하는 레벨은? (1~3) ");
+        int level = s.nextInt();
+        listAll(level);
     }
 }

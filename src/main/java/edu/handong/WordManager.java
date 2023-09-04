@@ -27,23 +27,26 @@ public class WordManager {
                 wordCRUD.deleteItem();
             } else if (menu == 7) { // save file
                 wordCRUD.saveFile();
+            } else if (menu == 2) { // search level
+                wordCRUD.searchLevel();
             }
         }
     }
 
     private int selectMenu() {
-        System.out.print("	 *** 영단어 마스터 ***\r\n"
-                + "*********************\r\n"
-                + "1. 모든 단어 보기\r\n"
-                + "2. 수준별 단어 보기\r\n"
-                + "3. 단어 검색\r\n"
-                + "4. 단어 추가\r\n"
-                + "5. 단어 수정\r\n"
-                + "6. 단어 삭제\r\n"
-                + "7. 파일 저장\r\n"
-                + "0. 나가기\r\n"
-                + "*********************\r\n"
-                + "=> 원하는 메뉴는? ");
+        System.out.print("""
+                	 *** 영단어 마스터 ***\r
+                *********************\r
+                1. 모든 단어 보기\r
+                2. 수준별 단어 보기\r
+                3. 단어 검색\r
+                4. 단어 추가\r
+                5. 단어 수정\r
+                6. 단어 삭제\r
+                7. 파일 저장\r
+                0. 나가기\r
+                *********************\r
+                => 원하는 메뉴는?\s""");
 
         return s.nextInt();
     }
