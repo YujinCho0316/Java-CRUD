@@ -23,6 +23,32 @@ public class WordCRUD implements  ICRUD{
         System.out.println("--------------------------------\n");
     }
 
+    // 2번
+    public void listAll(int level) {
+        int j = 0;
+        System.out.println("\n--------------------------------");
+        for (Word word : list) {
+            int ilevel = word.getLevel();
+            if (ilevel != level) continue;
+            System.out.print(j + 1 + " ");
+            System.out.println(word);
+
+            j++;
+        }
+        System.out.println("--------------------------------\n");
+    }
+    public void searchLevel() {
+        System.out.print("=> 원하는 레벨은? (1~3) ");
+        int level = s.nextInt();
+        listAll(level);
+    }
+
+    // 3번
+    public void searchWord() {
+        System.out.print("=> 원하는 단어는? ");
+        String keyword = s.next();
+        listAll(keyword);
+    }
 
     // 4번
     @Override
@@ -34,12 +60,12 @@ public class WordCRUD implements  ICRUD{
         System.out.print("=> 뜻 입력 : ");
         String meaning = s.nextLine();
 
-        return new Word(0, level, word, meaning);
+        return new Word(0, level, word.substring(1), meaning); // // word에 맨 앞에 띄어쓰기 하나가 포함되어 있기 때문에 첫번째 인덱스부터 list에 입력함
     }
     public void addItem(){
         Word one = (Word)add();
         list.add(one);
-        System.out.println("\n새 단어가 단어장에 추가되었습니다 !!\n");
+        System.out.println("==> 새 단어가 단어장에 추가되었습니다 \n");
     }
 
     // 5번
@@ -58,6 +84,10 @@ public class WordCRUD implements  ICRUD{
         System.out.println("--------------------------------\n");
         return idlist;
     }
+    @Override
+    public int update(Object obj) {
+        return 0;
+    }
 
     public void updateItem() {
         System.out.print("=> 수정할 단어 검색 : ");
@@ -68,9 +98,9 @@ public class WordCRUD implements  ICRUD{
         s.nextLine();
         System.out.print("=> 뜻 입력 : ");
         String meaning = s.nextLine();
-        Word word = list.get(idlist.get(id-1));
+        Word word = list.get(idlist.get(id-1)); // 왜 idlist.get(id-1)로 해야 하는가: id는 단순히 사용자가 입력한 숫자로, 키워드가 들어간 숫자들로 나타난 id이기 때문
         word.setMeaning(meaning);
-        System.out.println("단어가 수정되었습니다. \n");
+        System.out.println("==> 단어가 수정되었습니다. \n");
     }
 
     // 6번
@@ -84,15 +114,10 @@ public class WordCRUD implements  ICRUD{
         String ans = s.next();
         if(ans.equalsIgnoreCase("Y")){
             list.remove((int)idlist.get(id-1)); // 객체 혹은 정수 인덱스여야 삭제 가능
-            System.out.println("단어가 삭제되었습니다.\n");
+            System.out.println("==> 단어가 삭제되었습니다.\n");
         }
         else
-            System.out.println("취소되었습니다.\n");
-    }
-
-    @Override
-    public int update(Object obj) {
-        return 0;
+            System.out.println("==> 취소되었습니다.\n");
     }
 
     @Override
@@ -124,7 +149,7 @@ public class WordCRUD implements  ICRUD{
             br.close();
             System.out.println("==> " + count + "개 로딩 완료!!!");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -139,35 +164,9 @@ public class WordCRUD implements  ICRUD{
                 pr.write(one.toFileString() + "\n");
             }
             pr.close();
-            System.out.println("==> 데이터 저장 완료 !!!\n");
+            System.out.println("==> 데이터가 저장되었습니다. \n");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    // 2번
-    public void listAll(int level) {
-        int j = 0;
-        System.out.println("\n--------------------------------");
-        for (Word word : list) {
-            int ilevel = word.getLevel();
-            if (ilevel != level) continue;
-            System.out.print(j + 1 + " ");
-            System.out.println(word);
-            j++;
-        }
-        System.out.println("--------------------------------\n");
-    }
-    public void searchLevel() {
-        System.out.print("=> 원하는 레벨은? (1~3) ");
-        int level = s.nextInt();
-        listAll(level);
-    }
-
-    // 3번
-    public void searchWord() {
-        System.out.print("=> 원하는 단어는? ");
-        String keyword = s.next();
-        listAll(keyword);
     }
 }

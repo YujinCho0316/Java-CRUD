@@ -31,13 +31,15 @@ public class WordManager {
                 wordCRUD.deleteItem();
             } else if (menu == 7) { // save file
                 wordCRUD.saveFile();
+            } else {
+                System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
             }
         }
     }
 
     private int selectMenu() {
         System.out.print("""
-                	 *** 영단어 마스터 ***\r
+                	 \n*** 영단어 마스터 ***\r
                 *********************\r
                 1. 모든 단어 보기\r
                 2. 수준별 단어 보기\r
